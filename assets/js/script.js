@@ -1,10 +1,27 @@
 var titleQuestion = document.getElementById("CodeQuestions");
 var introDescription = document.getElementById("QuizDescription");
 var quizAnswerOptions = document.getElementById("AnswerChoices")
+var options = document.getElementById("quiz")
 var startButton = document.createElement("button");
 var timeEl = document.querySelector(".time");
-var secondsleft = 121;
+var secondsleft = 60;
 
+var QuizQuestions = [
+    {question: "Inside which HTML element do we put the Javascript?",
+    choices: ['<p>', '<ol>', '<link>', '<script>'],
+    answer: '<script>'
+}]
+
+function renderQuestions () {
+    titleQuestion.textContent = "";
+    introDescription.textContent = "";
+    quizAnswerOptions.remove(quizAnswerOptions.firstChild);
+    
+    for (i=0; i<QuizQuestions.length; i++) {
+        titleQuestion.textContent = QuizQuestions[i].question;
+        options.textContent = QuizQuestions[i].choices;
+    }
+}
 
 function startTimer () {
     var timerInterval = setInterval(function () {
@@ -21,6 +38,7 @@ function startTimer () {
 startButton.addEventListener("click", function() {
     startButton = document.getElementsByTagName("button");
     startTimer();
+    renderQuestions();
 })
 
 function init() {
